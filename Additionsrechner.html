@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Additionrechner</title>
+</head>
+
+<script>
+
+
+function fAddition(){
+    
+
+        var vSummand1;
+        var vSummand2;
+        var vSumme;
+        var vAusgabe="";
+
+        vSummand1 = parseFloat (document.getElementById("idSummand1").value);
+        vSummand2 = parseFloat (document.getElementById("idSummand2").value);
+  
+         vSumme = vSummand1 + vSummand2;
+
+         vAusgabe = vAusgabe + "Die Summe aus ";
+         vAusgabe = vAusgabe + vSummand1;
+         vAusgabe = vAusgabe + " und" ;
+         vAusgabe = vAusgabe + vSummand2;
+         vAusgabe = vAusgabe + "ist";
+         vAusgabe = vAusgabe + vSumme;
+         vAusgabe = vAusgabe + ".";
+
+         document.getElementById("idausgabe").innerHTML = vAusgabe;
+
+
+        }
+
+</script>
+
+
+
+
+
+<body>
+
+    <h1>Additionrechner</h1>
+
+ Summand 1: <Input id="idSummand1" type="text" value="10"> <br><br>
+ Summand 2. <Input id="idSummand2" type="text" value="5"> <br><br>
+<button onClick="fAddition();">Berechen Summe!</button><br> 
+<br>
+<div id="idausgabe">Hier kommt das Ergebnis der Addition von Summand1 und Summand2....</div>     
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)file://lsbk-fs01/27ASS2-04$/Downloads/Divisionsrechner-1%20(3).html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>&lt;h1&gt;Divisionsrechner&lt;/h1&gt;</title>
+</head>
+<body>
+     <h1>Divisionsrechner</h1>
+    <input id="dividend" type="text" value="10">
+
+    <input id="divisor" type="text" value="2">
+
+    <button onclick="fDivisionsrechner();">Teilen</button>
+
+    <div id="ausgabe">Ergebnis: 5.00</div>
+
+    <script>
+
+        function fDivisionsrechner() {
+           
+            var vText = document.getElementById("dividend").value;
+            var vZahl1 = parseFloat(vText);
+
+            vText = document.getElementById("divisor").value;
+            var vZahl2 = parseFloat(vText);
+            var ausgabeText;
+ 
+            if (vZahl2 === 0) {
+               ausgabeText = "Fehler: Division durch 0 nicht möglich";
+            } else {
+                var vErgebnis = vZahl1 / vZahl2;
+                ausgabeText = "Ergebnis: " + vErgebnis.toFixed(2);
+            }
+                
+            
+            document.getElementById("ausgabe").innerHTML = ausgabeText;
+             }
+    </script>
+
+
+
+</body></html>
