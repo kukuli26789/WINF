@@ -1,67 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+	<head>
+		<title>Eisverkauf - Gelato...</title>
+			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>
+			"use strict";
+			function fErloesrechner() {
+			// Quellcode
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Multitaschenrechner</title>
-</head>
+			var vProduktionsmenge;
+			var vAusgabe;
+			var vKV;
+			var vKostGesamt;
+			var vKF;
+			var vStueckPreis;
+			var vE, vG;
+			var vBEP;
+			var vGewinnschwelle;
+			var vMenge=0;
+		
+			vProduktionsmenge = parseFloat(document.getElementById("idProduktionsmenge").value);
+			vStueckPreis = parseFloat(document.getElementById("idPreis").value);
+			
+			vKV=parseFloat(document.getElementById("idKV").value);
+			vKF=parseFloat(document.getElementById("idKF").value);
+
+			vAusgabe = "";
+			vAusgabe = vAusgabe + "<table border=1>";
+			vAusgabe = vAusgabe + "<tr><th>Menge</th><th>Kosten K(x) = k<sub>F</sub> + k<sub>v</sub> * x </th><th>Erlöse E (x) = p * × </td><th>Gewinn G(x) = E(x) - K(x)</th><th>Bemerkung</th></tr>";
+
+			
+			for (vMenge = 0; vMenge <= vProduktionsmenge; vMenge += 1000) {
+		
+		
+			
+			vKostGesamt = vKF + (vKV * vMenge);
 
 
-<script>
- function frechner() {
+			
+			vE = vStueckPreis * vMenge;
+			
+			
+		
+		
+			vG = vE - vKostGesamt;
+				
+				
+			
+			vAusgabe += "<tr>";
 
+vAusgabe += "<td>" + vMenge + "</td>";
+vAusgabe += "<td>" + vKostGesamt.toFixed(2) + " €</td>";
+vAusgabe += "<td>" + vE.toFixed(2) + " €</td>";
 
-
-
-
-
-
+if (vG < 0) {
+    vAusgabe += "<td style='color:red'>" + vG.toFixed(2) + " €</td>";
+    vAusgabe += "<td>Verlustzone</td>";
+} else if (vG > 0) {
+    vAusgabe += "<td>" + vG.toFixed(2) + " €</td>";
+    vAusgabe += "<td>Gewinnzone</td>";
+} else {
+    vAusgabe += "<td>" + vG.toFixed(2) + " €</td>";
+    vAusgabe += "<td>Gewinnschwelle</td>";
 }
- 
 
-</script>
+vAusgabe += "</tr>";
+			
+				
+			vMenge += 100;	
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+			
+			vBEP = vKF / (vStueckPreis - vKV);
+           vBEP = Math.round(vBEP);       
+			
+		
+			vGerundeteZahl = Math.round(vZahl * 100) / 100;
+
+			
+			//Berechne die Gewinnschwelle in Euro - Hinweis Gewinnschwelle = BEP * Stückpreis
+			
+			vGewinnschwelle = vBEP * vStueckPreis;
+			
+			
+			
+			
+			
+			// Ausgabe der Break-Even-Point Stückmenge aufgerundet!
+			vAusgabe = vAusgabe + "Break-Even-Point (Stück): " + vBEP + " Stück<br>";
+			vAusgabe = vAusgabe + "Gewinnschwelle (Euro): " + vGewinnschwelle.toFixed(2) + " €<br>";
+			
+			
+			// Ausgabe des Break-Even-Points in Euro, zwei Stellen nach dem Komma. 
+			vAusgabe += "Break-Even-Point: " + vBEP + " Stück<br>";
+            vAusgabe += "Gewinnschwelle: " + vGewinnschwelle.toFixed(2) + " €<br>";
+			
+			
+			
+			vAusgabe = vAusgabe + "</table></br>";
+			
+			//Ausgabe der Variable vAusgabe im Div-Element 		
+			document.getElementById("idAusgabe").innerHTML = vAusgabe;
+		
+		}
+
+		</script></head>
 
 
 
-<body>
-   
-    <div class=" container vh-100 d-flex justify-content-center align-itema-center">
-    <div class="w-100" style=max-width:400px;>
+
+	<body>
+	<img src="eis.PNG" width="340px" height="260px">
+	
+	
+		<h1>Eisverkauf-Gelato</h1>
+	Kosten-Variabel(k, pro Eiskugel): <input id="idKV" value="0.50" size="6">
+		Kosten-Fix: <input id="idKF" value="500.00" size="6"><br/><br/>
+		Verkaufsmenge(x): <input id="idProduktionsmenge" value="1000" size="6">
+		Stückpreis(p): <input id="idPreis" value="1.50" size="6">
+		<button onclick="fErloesrechner();">Kostentabelle!</button><br><br>
+        <div id="idAusgabe"></div>
 
 
-   <h3 class="text-center mb4">Multi-Taschenrechner</h3> 
-
-
-
-    <div class="mb-3>
-    <label class="form-label">Zahl1</label>
-    <input type= "number" id="Zahl1 " class="form Control">
-    </div>
- 
-    <div class="mb-3">
-        <label  class="form-label"> Zahl2.</label>
-        <input type= "number" id="Zahl2" class="form Control" placeholder="">
-        </div>
-
-      <div class="alert alert-secondary text-center mb-3">
-          Ergebnis
-      </div>
-      
-      
-
-     <div class= "d-grid gap-3">
-        <button type="button" class="btn btn-success">Additon</button> 
-        <button type="button" class="btn btn-info">Subraktion</button> 
-        <button type="button" class="btn btn-primary">Multiplikationen</button>
-        <button type="button" class="btn btn-dark">Division</button> 
-    </div>
-
-</div>
-    
-</body>
-</html>
+</body></html>
